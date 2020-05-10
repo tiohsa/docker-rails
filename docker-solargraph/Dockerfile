@@ -1,4 +1,4 @@
-FROM ruby:2.7.1-alpine3.11
+FROM ruby:2.6.6-alpine3.11
 
 ENV ROOT="/tmp"
 ENV LANG=C.UTF-8
@@ -9,12 +9,12 @@ WORKDIR ${ROOT}
 RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
-        libc-dev \
-        libxml2-dev \
-        linux-headers \
-        bash \
-        build-base \
-        libxslt-dev
+    libc-dev \
+    libxml2-dev \
+    linux-headers \
+    bash \
+    build-base \
+    libxslt-dev
 
 COPY Gemfile ${ROOT}
 RUN bundle install

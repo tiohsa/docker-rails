@@ -1,4 +1,4 @@
-FROM ruby:2.7.1-alpine3.11
+FROM ruby:2.6.6-alpine3.11
 
 ENV ROOT="/myapp"
 ENV LANG=C.UTF-8
@@ -9,20 +9,20 @@ WORKDIR ${ROOT}
 RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
-        gcc \
-        g++ \
-        libc-dev \
-        libxml2-dev \
-        linux-headers \
-        make \
-        nodejs \
-        postgresql \
-        postgresql-dev \
-        tzdata \
-        yarn && \
+    gcc \
+    g++ \
+    libc-dev \
+    libxml2-dev \
+    linux-headers \
+    make \
+    nodejs \
+    postgresql \
+    postgresql-dev \
+    tzdata \
+    yarn && \
     apk add --virtual build-packages --no-cache \
-        build-base \
-        curl-dev
+    build-base \
+    curl-dev
 
 COPY Gemfile ${ROOT}
 COPY Gemfile.lock ${ROOT}
