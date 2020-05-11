@@ -1,0 +1,31 @@
+{
+  "name": "Existing Docker Compose (Extend)",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "web",
+  "workspaceFolder": "/myapp",
+  "settings": {
+    "terminal.integrated.shell.linux": null,
+    "solargraph.externalServer": {
+      "host": "solargraph",
+      "port": 7658
+    },
+    "solargraph.transport": "external",
+    "solargraph.logLevel": "debug",
+    "ruby.intellisense": "rubyLocate",
+    "ruby.useLanguageServer": true,
+    "solargraph.diagnostics": true,
+    "solargraph.definitions": true,
+    "solargraph.hover": false
+  },
+  "extensions": [
+    "rebornix.ruby",
+    "castwide.solargraph",
+    "misogi.ruby-rubocop",
+    "aaron-bond.better-comments",
+    "wingrunr21.vscode-ruby",
+    "hookyqr.beautify",
+    "kaiwood.endwise",
+    "walkme.ruby-extension-pack",
+    "visualstudioexptteam.vscodeintellicode"
+  ]
+}
