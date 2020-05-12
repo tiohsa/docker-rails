@@ -1,10 +1,10 @@
 FROM ruby:2.6.6-alpine3.11
 
-ENV ROOT="/tmp"
+ENV TMP="/tmp"
 ENV LANG=C.UTF-8
 ENV TZ=Asia/Tokyo
 
-WORKDIR ${ROOT}
+WORKDIR ${TMP}
 
 RUN apk update && \
     apk upgrade && \
@@ -16,7 +16,7 @@ RUN apk update && \
     build-base \
     libxslt-dev
 
-COPY Gemfile ${ROOT}
+COPY Gemfile ${TMP}
 RUN bundle install
 
 ENTRYPOINT ["solargraph"]

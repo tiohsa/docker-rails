@@ -4,7 +4,7 @@ $ sudo chown -R $USER:$USER ./rails_app
 $ docker-compose build
 ```
 
-config/database.yml
+./rails_app/config/database.yml
 
 ```yaml
 default: &default

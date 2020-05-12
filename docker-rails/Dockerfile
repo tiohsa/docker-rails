@@ -1,10 +1,11 @@
 FROM ruby:2.6.6-alpine3.11
 
-ENV ROOT="/myapp"
+ENV TMP="/tmp"
 ENV LANG=C.UTF-8
 ENV TZ=Asia/Tokyo
+ENV WORKSPACE="/workspace"
 
-WORKDIR ${ROOT}
+WORKDIR ${TMP}
 
 RUN apk update && \
     apk upgrade && \
@@ -24,19 +25,10 @@ RUN apk update && \
     build-base \
     curl-dev
 
-COPY Gemfile ${ROOT}
-COPY Gemfile.lock ${ROOT}
+COPY Gemfile ${TMP}
+COPY Gemfile.lock ${TMP}
 
 RUN bundle install
 RUN apk del build-packages
 
-COPY . ${ROOT}
-
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
-
-# Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+WORKDIR ${WORKSPACE}

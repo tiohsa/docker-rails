@@ -2,7 +2,7 @@
   "name": "Existing Docker Compose (Extend)",
   "dockerComposeFile": ["../docker-compose.yml"],
   "service": "web",
-  "workspaceFolder": "/myapp",
+  "workspaceFolder": "/workspace",
   "settings": {
     "terminal.integrated.shell.linux": null,
     "solargraph.externalServer": {
@@ -15,7 +15,15 @@
     "ruby.useLanguageServer": true,
     "solargraph.diagnostics": true,
     "solargraph.definitions": true,
-    "solargraph.hover": false
+    "solargraph.hover": false,
+    "ruby.lint": {
+      "reek": true,
+      "rubocop": true,
+      "ruby": false, //Runs ruby -wc
+      "fasterer": true,
+      "debride": true,
+      "ruby-lint": true
+    }
   },
   "extensions": [
     "rebornix.ruby",

@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   db:
@@ -11,29 +11,34 @@ services:
 
   solargraph:
     build:
-      context: './docker-solargraph'
-      dockerfile: 'Dockerfile'
+      context: "./docker-solargraph"
+      dockerfile: "Dockerfile"
     volumes:
       - bundle_path:/bundle
     environment:
       - BUNDLE_PATH=/bundle
     ports:
-      - '8091:7658'
+      - "8091:7658"
 
   web:
     build:
-      context: './docker-rails'
-      dockerfile: 'Dockerfile'
-    command: ash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+      context: "./docker-rails"
+      dockerfile: "Dockerfile"
+    command: /bin/sh -c "while sleep 1000; do :; done"
     volumes:
-      - ./rails_app:/myapp
+      - ./rails_app:/workspace:cached
       - bundle_path:/bundle
     environment:
       - BUNDLE_PATH=/bundle
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+      - RAILS_SERVE_STATIC_FILES=1
     ports:
-      - '3000:3000'
+      - "3000:3000"
+      - "3035:3035"
     depends_on:
       - db
       - solargraph
+    stdin_open: true
+    tty: true
 volumes:
   bundle_path:
