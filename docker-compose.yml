@@ -24,6 +24,8 @@ services:
     build:
       context: "./docker-rails"
       dockerfile: "Dockerfile"
+    security_opt:
+      - seccomp:unconfined
     command: /bin/sh -c "while sleep 1000; do :; done"
     volumes:
       - ./rails_app:/workspace:cached

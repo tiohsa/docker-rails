@@ -24,7 +24,13 @@ RUN apk update && \
     yarn && \
     apk add --virtual build-packages --no-cache \
     build-base \
+    curl \
+    bash \
     curl-dev
+
+RUN touch ~/.bashrc \
+&& curl -o- -L https://yarnpkg.com/install.sh | bash \
+&& ln -s "$HOME/.yarn/bin/yarn" /usr/local/bin/yarn
 
 COPY Gemfile ${TMP}
 COPY Gemfile.lock ${TMP}
